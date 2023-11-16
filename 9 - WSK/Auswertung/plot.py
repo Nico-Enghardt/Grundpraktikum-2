@@ -5,6 +5,7 @@ from matplotlib.ticker import (MultipleLocator)
 
 import openpyxl as pyxl
 from pandas import DataFrame
+from Rundung import rundung_str
 
 def diagramm(x_series_errors, y_series_errors, legende=None, xlabel=None, ylabel=None, color="black",marker="x"):
     
@@ -78,3 +79,26 @@ def squared_rel_error(error, value):
       value_nonzero = np.where(value!=0, 1, 0)
         
       return np.square(np.divide(error,value+0.000000000001)*value_nonzero)
+    
+def save_table(name,*all_value_error_tupel): 
+  
+  table = ""
+  
+  num_variables = len(all_value_error_tupel)
+  num_datapoints = len(all_value_error_tupel[0][0])
+  
+  for num_point in range(num_datapoints):
+    row = ""
+    
+    for num_var in range(num_variables):
+      
+      value = all_value_error_tupel[num_var][0][num_point]
+      error = all_value_error_tupel[num_var][1][num_point]
+  
+      row += f" {rundung_str(value,error)} &"
+      
+    table += row[:-1] + " \\\\ \n"  
+    
+  with open(name,"w") as file:
+    
+    file.write(table)

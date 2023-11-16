@@ -53,7 +53,11 @@ def rundung(wert,fehler=None,zwischen=True):
         return round(wert,power), fehler_round
     
 def rundung_str(wert, fehler=None):
+    
+    wert_gerundet, fehler_gerundet  = rundung(wert, fehler, zwischen = True)
 
     if fehler:
         
-        return f"${wert}\pm{fehler}$"
+        return f"${wert_gerundet:g}\pm{fehler_gerundet:g}$"
+    
+    else: return f"${wert_gerundet:g}$"

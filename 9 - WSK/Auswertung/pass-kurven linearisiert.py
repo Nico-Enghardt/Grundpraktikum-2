@@ -22,10 +22,11 @@ def load_messwerte(messwerte):
 
     return (f, df), (U_R_pro_U_0, dU_R_pro_U_0)
 
-messwerte_bandpass = import_file("Auswertung/Bandpass.xlsx")
-messwerte_hochpass = import_file("Auswertung/Hochpass.xlsx")
-messwerte_tiefpass = import_file("Auswertung/Tiefpass.xlsx")
+messwerte_bandpass = import_file("9 - WSK/Auswertung/Bandpass.xlsx")
+messwerte_hochpass = import_file("9 - WSK/Auswertung/Hochpass.xlsx")
+messwerte_tiefpass = import_file("9 - WSK/Auswertung/Tiefpass.xlsx")
 
+save_table("tabelle-bandpass.tex",*load_messwerte(messwerte_bandpass))
 # Drop first value of hochpass
 
 messwerte_hochpass = messwerte_hochpass[1:]
@@ -82,12 +83,4 @@ plt.suptitle("Normierte Strom-Spannungs-Kennlinien",fontsize=22)
 plt.title("Glühlampe (blau), Widerstand (orange), Graphitstab (rot)",fontsize=18)
 
 plt.show()
-
-def save_table(name,kwargs): 
-  
-  for ind in range(kwargs):
     
-    print("f")
-
-
-save_table("tabelle-bfandpass.tex",)
