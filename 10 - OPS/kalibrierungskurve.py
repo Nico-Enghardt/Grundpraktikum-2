@@ -16,7 +16,15 @@ messwerte_mercury = import_file("Quecksilber-Kalibrierungskurve.csv")
 defrac_angle, lamb = load_messwerte(messwerte_mercury)
 
 
-unknown_lamp_angles = 182.01 -  np.array([133.89,133.79,133.15,132.21,132.80,131.74,131.26])
+unknown_lamp_angles = 182.01 -  np.array([133.89,
+                                          133.79,
+                                          133.15,
+                                          132.21,
+                                          132.80, # vermutlich ein Ablesefehler
+                                          131.74,
+                                          131.26])
+
+print(unknown_lamp_angles)
 
 helium_wavelengths = [447.1, 471.1, 492.2, 501.6, 587.6]
 
