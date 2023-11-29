@@ -22,7 +22,8 @@ def diagramm(x_series_errors, y_series_errors, legende=None, xlabel=None, ylabel
     yaxis = plt.gca().yaxis
     
     
-    plt.grid(visible=True, which="major", linewidth=.5)
+    plt.grid(visible=True, which="major", linewidth=.6)
+    plt.grid(visible=True, which="minor", linewidth=.3)
 
     # Achsenbeschriftungen
     
@@ -33,6 +34,15 @@ def diagramm(x_series_errors, y_series_errors, legende=None, xlabel=None, ylabel
     
     # plt.xlim(-0.1,1.3)
     # plt.ylim(-0.1,1.3)
+    
+    xaxis.set_major_locator(MultipleLocator(0.5))
+    #xaxis.set_major_formatter('{x:.f}')
+    
+    xaxis.set_minor_locator(MultipleLocator(0.02))
+    
+    yaxis.set_major_locator(MultipleLocator(50))
+    #xaxis.set_major_formatter('{x:.0f}')
+    yaxis.set_minor_locator(MultipleLocator(5))
     
     plt.legend()
 
