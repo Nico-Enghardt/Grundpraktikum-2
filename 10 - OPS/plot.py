@@ -35,14 +35,14 @@ def diagramm(x_series_errors, y_series_errors, legende=None, xlabel=None, ylabel
     # plt.xlim(-0.1,1.3)
     # plt.ylim(-0.1,1.3)
     
-    xaxis.set_major_locator(MultipleLocator(0.5))
-    #xaxis.set_major_formatter('{x:.f}')
+    # xaxis.set_major_locator(MultipleLocator(0.5))
+    # #xaxis.set_major_formatter('{x:.f}')
     
-    xaxis.set_minor_locator(MultipleLocator(0.02))
+    # xaxis.set_minor_locator(MultipleLocator(0.02))
     
-    yaxis.set_major_locator(MultipleLocator(50))
-    #xaxis.set_major_formatter('{x:.0f}')
-    yaxis.set_minor_locator(MultipleLocator(5))
+    # yaxis.set_major_locator(MultipleLocator(50))
+    # #xaxis.set_major_formatter('{x:.0f}')
+    # yaxis.set_minor_locator(MultipleLocator(5))
     
     plt.legend()
 
@@ -75,7 +75,7 @@ def import_file(filename):
   if filename.endswith(".xlsx"):
     
     workbook = pyxl.load_workbook(filename, data_only=True)
-    df = DataFrame(workbook.get_sheet_by_name('Tabelle1').values)
+    df = DataFrame(workbook.get_sheet_by_name('Sheet1').values)
     
     df.drop(index=df.index[0], axis=1,inplace=True)
     
@@ -103,10 +103,16 @@ def save_table(name,*all_value_error_tupel):
     
     for num_var in range(num_variables):
       
-      value = all_value_error_tupel[num_var][0][num_point]
-      error = all_value_error_tupel[num_var][1][num_point]
+      if len(all_value_error_tupel[num_var]) == 2:
+        # Probably fehler given to data
+        value = all_value_error_tupel[num_var][0][num_point]
+        error = all_value_error_tupel[num_var][1][num_point]
   
-      row += f" {rundung_str(value,error)} &"
+        row += f" {rundung_str(value,error)} &"
+      else: 
+        
+        value = all_value_error_tupel[num_var][num_point]
+        row += f" {value} &"
       
     table += row[:-1] + " \\\\ \n"  
     

@@ -54,7 +54,7 @@ def rundung(wert,fehler=None,zwischen=True):
     
 def rundung_str(wert, fehler=None):
     
-    wert_gerundet, fehler_gerundet  = rundung(wert, fehler, zwischen = True)
+    wert_gerundet, fehler_gerundet  = rundung(wert, fehler, zwischen = False)
 
     if fehler:
         
