@@ -11,7 +11,7 @@ def load_messwerte(messwerte):
     d_defrac_angle = np.ones(defrac_angle.shape)*0.1
     d_lamb = np.zeros(defrac_angle.shape)
 
-    return (defrac_angle,d_defrac_angle), (lamb,d_lamb), (angle,d_defrac_angle)
+    return (defrac_angle,d_defrac_angle), (lamb, d_lamb), (angle,d_defrac_angle)
 
 messwerte_mercury = import_file("10 - OPS\Dispersionskurve.xlsx")
 defrac_angle, lamb, angle = load_messwerte(messwerte_mercury)
@@ -28,4 +28,4 @@ diagramm(lamb, (n,dn), legende="dispersion curve",xlabel="wavelength in nm", yla
 
 plt.show()
 
-save_table("dispersionskurve.tex",defrac_angle,angle,lamb)
+save_table("dispersionskurve.tex",defrac_angle, angle, (n, dn), lamb[0])
